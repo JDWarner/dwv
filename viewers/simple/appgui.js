@@ -11,6 +11,12 @@ dwv.tool.defaultpresets.CT = {
     "bone": {"center": 500, "width": 2000},
 };
 
+// Loaders
+dwv.gui.Loadbox = dwv.gui.base.Loadbox;
+// File loader
+dwv.gui.FileLoad = dwv.gui.base.FileLoad;
+// Url loader
+dwv.gui.UrlLoad =  dwv.gui.base.UrlLoad;
 // Window
 dwv.gui.getWindowSize = dwv.gui.base.getWindowSize;
 // Progress
@@ -30,7 +36,7 @@ dwv.gui.Toolbox = function (app)
     this.setup = function (/*list*/)
     {
         //base.setup(list);
-        
+
         var mainFieldset = document.createElement("fieldset");
         mainFieldset.id = "mainfieldset";
         mainFieldset.setAttribute("data-role", "controlgroup");
@@ -199,5 +205,21 @@ dwv.gui.appendResetHtml = function (app)
     
     var node = document.getElementById("mainfieldset");
     node.appendChild(button);
+    $("#mainfieldset").trigger("create");
+};
+
+//Load
+dwv.gui.appendOpenButton = function (app)
+{
+    var open = document.createElement("a");
+    open.href = "#popupOpen";
+    open.setAttribute("data-rel", "popup");
+    open.setAttribute("data-position-to", "window");
+    open.appendChild(document.createTextNode("Open"));
+    open.setAttribute("class","ui-btn ui-btn-inline");
+
+    
+    var node = document.getElementById("mainfieldset");
+    node.appendChild(open);
     $("#mainfieldset").trigger("create");
 };
